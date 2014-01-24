@@ -5,7 +5,9 @@ import cookielib
 import sys
 import io
 import json
+import getpass
 import os
+import getopt
 
 # App directory
 localDir = os.path.expanduser("~") + "/.local/share/magtifun"
@@ -28,7 +30,7 @@ def routeCommand(cmd):
 	log("routing command: " + cmd)
 	if (cmd == 'login'):
 		username = raw_input("Enter username: ")
-		password = raw_input("Enter password: ")
+		password = getpass.getpass("Enter password: ")
 		log("auth input: " + username + ":" + password)
 		login(username, password)
 	elif (cmd == 'logout'):
@@ -137,6 +139,18 @@ def logout():
 		print("Error: %s file not found" % localAuthFile)
 	return
 
+def whoami():
+	log("entered whoami()")
+	if not os.path.isfile(localAuthFile):
+		return "You are logged out"
+	authFileSource = open(localAuthFile, 'r')
+	authFileDict = json.load(authFileSource)
+	authFileSource.close()
+	try:
+		authUser = authFileDict["username"]
+	except KeyError:
+		return ;
+
 def man():
 	print """magtifun 0.1.1 for Linux
 Usage: magtifun login|logout|send
@@ -168,11 +182,15 @@ def log(message):
 
 ############
 # Main point
-try:
-	inCmd = sys.argv[1]
-except IndexError:
-	man()
-else:
-	routeCommand(inCmd)
-finally:
-	pass
+def main(argv):
+	try:
+		inCmd = sys.argv[1]
+	except IndexError:
+		man()
+	else:
+		routeCommand(inCmd)
+	finally:
+		pass
+
+if __name__ == "__main__":
+   main(sys.argv[1:])
