@@ -11,7 +11,7 @@ enter password: [hidden input for password]
 ```
 
 #### Send message
- - **Quick:** `$ magtifun 598123456 "message text here"` *(Deprecated. will be removed after v0.2.0)*
+ - **Quick:** `$ magtifun send 598123456 "message text here"
  - **Multiple recipients:** `$ magtifun send --to="number,number2,number3" --msg="message text"`
 
 #### Logout
@@ -21,10 +21,6 @@ successfully logged out.
 ```
 
 ## Contributing
+Contributions are welcome
 
-feel free to fork ;)
-
-#### Contributors
- - [@tatocaster](https://github.com/tatocaster)
- - [@Stichoza](https://github.com/Stichoza)
- - [@lukaramishvili](https://github.com/lukaramishvili)
+Originally started by [@tatocaster](https://github.com/tatocaster), forked/ [@Stichoza](https://github.com/Stichoza)
