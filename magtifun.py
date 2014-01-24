@@ -47,6 +47,8 @@ def routeCommand(cmd):
 		else:
 			log("trying to send message '" + message + "' to " + number)
 			sendSms(number, message)
+	elif (cmd == 'whoami'):
+		whoami()
 	else:
 		error("Invalid operation " + cmd)
 	return
@@ -99,6 +101,7 @@ def sendSms(number, message):
 			log("session expired. no relogin. exiting")
 			return
 	elif (res == "success"):
+		print "Message sent successfully"
 		log("sent")
 	return # return boolean status
 
@@ -142,6 +145,7 @@ def logout():
 def whoami():
 	log("entered whoami()")
 	if not os.path.isfile(localAuthFile):
+		log("logged out")
 		return "You are logged out"
 	authFileSource = open(localAuthFile, 'r')
 	authFileDict = json.load(authFileSource)
@@ -149,7 +153,9 @@ def whoami():
 	try:
 		authUser = authFileDict["username"]
 	except KeyError:
-		return ;
+		return;
+	else:
+		print authUser
 
 def man():
 	print """magtifun 0.1.1 for Linux
