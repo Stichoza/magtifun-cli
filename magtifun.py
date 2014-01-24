@@ -103,6 +103,8 @@ def sendSms(number, message):
 	elif (res == "success"):
 		print "Message sent successfully"
 		log("sent")
+	else:
+		print error("Message from server: " + res)
 	return # return boolean status
 
 def login(username, password):
