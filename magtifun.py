@@ -102,6 +102,7 @@ def sendSms(number, message):
 			return
 	elif (res == "success"):
 		print "Message sent successfully"
+		os.system("notify-send \"Magtifun CLI\" \"Message sent successfully\" -u normal -i \"mail-replied\"")
 		log("sent")
 	else:
 		print error("Message from server: " + res)
@@ -173,6 +174,7 @@ short text messages via free sms servce called MagtiFun.
 # Display an error
 def error(message):
 	print "E: " + message
+	os.system("notify-send \"Magtifun CLI\" \"" + message + "\" -u normal -i \"error\"")
 	return
 
 def prompt(message, defaultY):
