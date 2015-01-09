@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Installing lxml"
+pip install lxml
 chmod +x magtifun.py
 working_dir=$(pwd)
 sudo sh -c "rm /usr/bin/magtifun"
