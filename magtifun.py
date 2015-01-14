@@ -115,6 +115,7 @@ def login(username, password):
 		try:
 			log("creating app dir in .local/share")
 			os.makedirs(localDir)
+			os.chmod(localDir, 0700)
 		except OSError as exception:
 			if exception.errno != errno.EEXIST:
 				log("local dir creating failed")
